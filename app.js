@@ -5,14 +5,14 @@ const inquirer = require("inquirer");
 const promptUser = () => {
   return inquirer.prompt([
     {
-      type: 'input',
-      name: 'name',
-      message: 'What is your name? (Required)',
+      type: "input",
+      name: "name",
+      message: "What is your name? (Required)",
       validate: nameInput => {
         if (nameInput) {
           return true;
         } else {
-          console.log('Please enter your name!');
+          console.log("Please enter your name!");
           return false;
         }
       }
@@ -25,15 +25,28 @@ const promptUser = () => {
         if (userNameInput) {
           return true;
         } else {
-          console.log('Please enter your GitHub Username!');
+          console.log("Please enter your GitHub Username!");
           return false;
         }
       }
     },
     {
+      type: "confirm",
+      name: "confirmAbout",
+      message: "Would you like to enter some information about yourself for an 'About' section?",
+      default: true
+    },
+    {
       type: "input",
       name: "about",
-      message: "Provide some information about yourself:"
+      message: "Provide some information about yourself:",
+      when: ({ confirmAbout }) => {
+        if (confirmAbout) {
+          return true;
+        } else {
+          return false;
+        }
+      }
     }
   ]);
 };
@@ -57,7 +70,7 @@ Add a New Project
         if (projectName) {
           return true;
         } else {
-          console.log('Please enter the name of your project!');
+          console.log("Please enter the name of your project!");
           return false;
         }
       }
@@ -70,7 +83,7 @@ Add a New Project
         if (projectDescription) {
           return true;
         } else {
-          console.log('Please enter a description of the project!');
+          console.log("Please enter a description of the project!");
           return false;
         }
       }
@@ -89,7 +102,7 @@ Add a New Project
         if (gitHubLink) {
           return true;
         } else {
-          console.log('Please enter the GitHub link to your project!');
+          console.log("Please enter the GitHub link to your project!");
           return false;
         }
       }
